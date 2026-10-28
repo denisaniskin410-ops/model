@@ -1,1 +1,27 @@
-<model-viewer src="vaz.glb" camera-controls auto-rotate style="width: 100%; height: 500px;"></model-viewer>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тест 3D модели</title>
+    <!-- 1. Проверьте, подключен ли этот скрипт: -->
+    <script type="module" src="https://googleapis.com"></script>
+    <style>
+        /* 2. Задаем размеры, чтобы плеер не сжался в невидимую точку */
+        model-viewer {
+            width: 100vw;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 3. Главный тег. Замените "model.glb" на ИМЯ вашей модели -->
+    <model-viewer 
+        src="vaz.glb" 
+        camera-controls 
+        auto-rotate>
+    </model-viewer>
+
+</body>
+</html>
