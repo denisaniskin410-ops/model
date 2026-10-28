@@ -2,25 +2,39 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Тест 3D модели</title>
-    <!-- 1. Проверьте, подключен ли этот скрипт: -->
-    <script type="module" src="https://denisaniskin410-ops.github.io/model/"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Модель ВАЗ</title>
+    <!-- Подключаем скрипт для работы 3D-плеера -->
+    <script type="module" src="https://googleapis.com"></script>
     <style>
-        /* 2. Задаем размеры, чтобы плеер не сжался в невидимую точку */
-        model-viewer {
-            width: 100vw;
-            height: 100vh;
+        body {
+            margin: 0;
             background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            max-width: 800px;
+            max-height: 600px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
 
-    <!-- 3. Главный тег. Замените "model.glb" на ИМЯ вашей модели -->
+    <!-- Компонент отображения 3D-модели -->
     <model-viewer 
         src="vaz.glb" 
+        alt="3D модель ВАЗ" 
+        auto-rotate 
         camera-controls 
-        auto-rotate>
+        ar>
     </model-viewer>
 
 </body>
