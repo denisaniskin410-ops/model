@@ -1,41 +1,41 @@
+
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Модель ВАЗ</title>
-    <!-- Подключаем скрипт для работы 3D-плеера -->
-    <script src="/denisaniskin410-ops.github.com/vaz-v3.glb"></script>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>GLB Viewer</title>
     <style>
-        body {
-            margin: 0;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        model-viewer {
-            width: 100%;
-            height: 100%;
-            max-width: 800px;
-            max-height: 600px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+      canvas {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <script type="module" src="https://unpkg.com/three@0.160.0/build/three.module.js"></script>
+    <script type="module" src="https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js"></script>
 
-    <!-- Компонент отображения 3D-модели -->
-    <model-viewer 
-        src="vaz-v3.glb" 
-        alt="3D модель ВАЗ" 
-        auto-rotate 
-        camera-controls 
-        ar>
-    </model-viewer>
-
-</body>
+    <script>
+      async function loadModel() {
+        const loader = new GLTFLoader();
+        loader.load('vaz-v3.glb', (geometry, materials, accessors) => {
+          const scene = new THREE.Scene();
+          scene.add(new THREE.Mesh(geometry, materials));
+          const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+          camera.position.set(0, 0, 5);
+          scene.add(camera);
+          const controls = new THREE.OrbitControls(camera, canvas);
+          controls.addEventListener('change', (event) => {
+            const angle = event.target.angle;
+            const zoom = 10 ** angle;
+            camera.scaleBy(zoom);
+          });
+          document.body.appendChild(scene);
+        }, (error) => {
+          console.error(error);
+        });
+      }
+    </script>
+  </body>
 </html>
