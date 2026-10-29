@@ -1,41 +1,10 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>GLB Viewer</title>
-    <style>
-      canvas {
-        display: block;
-        max-width: 100%;
-        height: auto;
-      }
-    </style>
-  </head>
-  <body>
-    <script type="module" src="https://unpkg.com/three@0.160.0/build/three.module.js"></script>
-    <script type="module" src="https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js"></script>
-
-    <script>
-      async function loadModel() {
-        const loader = new GLTFLoader();
-        loader.load('vaz-v3.glb', (geometry, materials, accessors) => {
-          const scene = new THREE.Scene();
-          scene.add(new THREE.Mesh(geometry, materials));
-          const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-          camera.position.set(0, 0, 5);
-          scene.add(camera);
-          const controls = new THREE.OrbitControls(camera, canvas);
-          controls.addEventListener('change', (event) => {
-            const angle = event.target.angle;
-            const zoom = 10 ** angle;
-            camera.scaleBy(zoom);
-          });
-          document.body.appendChild(scene);
-        }, (error) => {
-          console.error(error);
-        });
-      }
-    </script>
-  </body>
+<head>
+    <title>GLB в HTML</title>
+    <script src="C:\Users\DENIS\OneDrive\Рабочий стол\model\vaz-v3.glb"></script>
+</head>
+<body>
+    <model-viewer type="glb" id="3d-model"></model-viewer>
+</body>
 </html>
